@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes = [
-  {
-    path: '',
-    redirectTo: '/auth/login',
-    pathMatch: 'full'
-  }
+const appRoutes: Routes = [
+  { path: 'auth', loadChildren: './modules/auth/auth.module#AuthModule' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' }
+  // { path: 'client', loadChildren: './modules/client/client.module#ClientModule' },
+  // { path: '', pathMatch: 'full', redirectTo: '/auth/login' },
+  // { path: '**', redirectTo: '/auth/404' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
-  exports: [RouterModule],
-  providers: []
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
 
