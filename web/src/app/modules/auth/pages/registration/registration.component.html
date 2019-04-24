@@ -47,7 +47,7 @@
       </div>
       <div class="form-holder">
         <span class="lnr lnr-phone-handset"></span>
-        <input type="text" class="form-control" [placeholder]="'Phone Number*'" formControlName="phone">
+        <input type="text" class="form-control" [placeholder]="'Phone Number*'" formControlName="phone" prefix="+7" mask="(000)-000-00-00">
       </div>
       <div class="form-holder">
         <span class="lnr lnr-envelope"></span>
@@ -76,14 +76,8 @@
       </div>
       <div class="form-holder">
         <span class="lnr lnr-lock"></span>
-        <input type="password" class="form-control" [placeholder]="'Confirm Password*'" formControlName="confirmPassword">
+        <input type="password" class="form-control" [placeholder]="'Confirm Password*'" formControlName="confirmPassword" (keyup)="onKeyConfirmPassword($event)">
       </div>
-
-
-
-      <!--<button>
-        <span>Sign Up</span>
-      </button>-->
       <div class="form-holder">
         <input type="submit" value="Sign Up" class="btn btn-info btn-auth" [disabled]="registrationForm.invalid">
       </div>

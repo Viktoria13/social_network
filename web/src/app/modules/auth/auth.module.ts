@@ -5,8 +5,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 
-import {AuthRoutingModule} from './auth-routing.module';
+import { AuthRoutingModule } from './auth-routing.module';
 
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,8 @@ import {AuthRoutingModule} from './auth-routing.module';
     CommonModule,
     AuthRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
   ]
 })
 export class AuthModule { }

@@ -14,15 +14,15 @@
 
 <div class="wrapper">
   <div class="inner">
-    <form action="">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h3>Welcome</h3>
       <div class="form-holder">
         <span class="lnr lnr-user"></span>
-        <input type="text" class="form-control" placeholder="Username">
+        <input type="text" class="form-control" [placeholder]="'Username*'" formControlName="username">
       </div>
       <div class="form-holder">
         <span class="lnr lnr-lock"></span>
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" [placeholder]="'Password*'" formControlName="password">
       </div>
       <!--<button>
         <span>Sign In</span>
