@@ -2,26 +2,26 @@ package com.viktoriia.social.network.profile.models;
 
 public class User {
     private String name;
-    private String password;
+    private String surname;
 
-    public User(String name, String password) {
+    public User(String name, String surname) {
         this.name = name;
-        this.password = password;
+        this.surname = surname;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSurname() {
+        return surname;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }
