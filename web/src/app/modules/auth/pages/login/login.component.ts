@@ -45,9 +45,25 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/auth/registration']);
   }
 
-  onSubmit() {
-    console.log(this.user);
-    // this.userTestService.saveUser(this.user);
+  login() {
+    if (this.loginForm.valid) {
+      /*const formControls = this.loginForm.controls;
+      this.authService.login(formControls.username.value, formControls.password.value)
+        .subscribe(
+          () => {
+            console.log('User is logged in');
+            this.router.navigateByUrl('/profile/data');
+          }
+        );*/
+
+      this.authService.login(this.loginForm.value)
+        .subscribe(
+          () => {
+            console.log('User is logged in');
+            this.router.navigateByUrl('/profile/data');
+          }
+        );
+    }
   }
 
 }

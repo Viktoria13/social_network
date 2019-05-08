@@ -14,7 +14,7 @@
 
 <div class="wrapper">
   <div class="inner">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <h3>Welcome</h3>
       <div class="form-holder">
         <span class="lnr lnr-user"></span>
@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<div class="card my-5">
+<!--<div class="card my-5">
   <div class="card-body">
     <form (ngSubmit)="onSubmitTest()" #userForm="ngForm">
       <div class="form-group">
@@ -50,7 +50,7 @@
                #surname="ngModel">
       </div>
       <button type="submit" class="btn btn-info">Submit</button>
-      <!--<button type="submit" [disabled]="!userForm.form.valid" class="btn btn-info">Submit</button>-->
+      &lt;!&ndash;<button type="submit" [disabled]="!userForm.form.valid" class="btn btn-info">Submit</button>&ndash;&gt;
     </form>
   </div>
 </div>
@@ -68,4 +68,4 @@
     <td>{{ user.surname }}</td>
   </tr>
   </tbody>
-</table>
+</table>-->
