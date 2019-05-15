@@ -1,9 +1,11 @@
 package com.viktoriia.social.network.auth.model;
 
-public class LoginUser {
+public class UserDto {
 
     private String username;
     private String password;
+    private String name;
+    private String email;
 
     public String getUsername() {
         return username;
@@ -19,5 +21,21 @@ public class LoginUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

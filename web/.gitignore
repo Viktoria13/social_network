@@ -33,3 +33,15 @@ yarn-error.log
 
 # User specific bazel settings
 .bazelrc.user
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+# Compiled class file
+*.class
+
+# Log file
+*.log

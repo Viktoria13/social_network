@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {AuthService} from '../../../../core/services/auth.service';
+import {AuthService} from '../../../../core/services/auth/auth.service';
+import {SignUpInfo} from '../../../../core/services/auth/signup-info';
+import {Route, Router} from '@angular/router';
 
 
 @Component({
@@ -13,7 +15,12 @@ export class RegistrationComponent implements OnInit {
   private confirmPassword: string;
   registrationForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  signupInfo: SignUpInfo;
+  isSignedUp = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.buildForm();
   }
 
@@ -41,8 +48,31 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     if (this.registrationForm.valid) {
-      const userData = this.registrationForm.value;
-      this.authService.registration(userData);
+
+      const formControls = this.registrationForm.controls;
+
+      this.signupInfo = new SignUpInfo(
+        formControls.fullName.value,
+        formControls.username.value,
+        formControls.email.value,
+        formControls.password.value);
+
+      this.authService.signUp(this.signupInfo).subscribe(
+        data => {
+          console.log(data);
+          this.isSignedUp = true;
+          this.isSignUpFailed = false;
+          this.router.navigate(['/auth/login']);
+        },
+        error => {
+          console.log(error);
+          this.errorMessage = error.error.message;
+          this.isSignUpFailed = true;
+        }
+      );
+
+      /*const userData = this.registrationForm.value;
+      this.authService.registration(userData);*/
     } else {
       alert('Form data is invalid!');
     }

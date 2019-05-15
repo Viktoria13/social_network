@@ -12,8 +12,8 @@ export class UserTestService {
   private readonly saveUrl: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:4000/api/profile/users';
-    this.saveUrl = 'http://localhost:4000/api/profile/saveUser';
+    this.url = 'http://localhost:8765/api/profile/users';
+    this.saveUrl = 'http://localhost:8765/api/profile/saveUser';
   }
 
   public getUsers(): Observable<UserTest[]> {
