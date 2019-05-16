@@ -1,6 +1,7 @@
-package com.viktoriia.social.network.auth.config;
+package com.viktoriia.social.network.gateway.security;
 
 import org.springframework.stereotype.Component;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

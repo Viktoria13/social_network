@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,11 +20,11 @@ public class ProfileController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<User> getUsers() {
-        /*List<User> users = Arrays.asList(
+        List<User> users = Arrays.asList(
                 new User("Viktoriia", "Tarasova"),
                 new User("Alexandr", "Strakhov"),
                 new User("Eugen", "Parinov")
-        );*/
+        );
         return users;
     }
 

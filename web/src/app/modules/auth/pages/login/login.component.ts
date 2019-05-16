@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {AuthService} from '../../../../core/services/auth/auth.service';
-import {UserTestService} from '../../../../core/services/user-test.service';
-import {UserTest} from '../../../../shared/models/user-test';
 import {Router} from '@angular/router';
-import {AuthLoginInfo} from '../../../../core/services/auth/login-info';
-import {TokenStorage} from '../../../../core/services/auth/token.storage';
+import {AuthLoginInfo} from '../../../../core/authentication/login-info';
+import {TokenStorage} from '../../../../core/authentication/token.storage';
 
 
 @Component({
@@ -26,9 +24,11 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
 
+  headers: any;
+
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
-              private token: TokenStorage,
+              private tokenStorage: TokenStorage,
               private router: Router) {
     this.buildForm();
   }
@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    alert(this.tokenStorage.getToken());
     /*if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
@@ -65,6 +66,14 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
 
+  getInfo() {
+    this.authService.getInfo().subscribe(
+      data => {
+        console.log(data);
+      }
+    );
+  }
+
   login() {
     if (this.loginForm.valid) {
 
@@ -78,9 +87,16 @@ export class LoginComponent implements OnInit {
 
       this.authService.attemptAuth(this.loginInfo).subscribe(
 
-        data => {
-          this.token.saveToken(data.token);
-          this.router.navigate(['/home/profile']);
+        resp => {
+          // display its headers
+          /*const keys = resp.headers.keys();
+          this.headers = keys.map(key =>
+            `${key}: ${resp.headers.get(key)}`);
+          console.log(this.headers);*/
+          this.tokenStorage.saveToken(resp.headers.get('Authorization'));
+          console.log(resp.headers.get('Authorization'));
+          /*this.token.saveToken(data.token);
+          this.router.navigate(['/home/profile']);*/
         }
 
 

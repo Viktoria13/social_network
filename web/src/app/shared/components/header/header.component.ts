@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TokenStorage} from '../../../core/services/auth/token.storage';
+import {TokenStorage} from '../../../core/authentication/token.storage';
 
 @Component({
   selector: 'app-header',

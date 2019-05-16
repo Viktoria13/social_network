@@ -1,36 +1,29 @@
 package com.viktoriia.social.network.auth.service.impl;
 
 import com.viktoriia.social.network.auth.model.User;
-import com.viktoriia.social.network.auth.model.UserDto;
 import com.viktoriia.social.network.auth.repository.UserRepository;
 import com.viktoriia.social.network.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 
 @Service(value = "userService")
-public class UserServiceImpl implements UserDetailsService, UserService {
+public class UserServiceImpl /*implements UserService*/ {
 	
 	/*@Autowired
 	private UserDao userDao;*/
 
-	private UserRepository userDao = new UserRepository();
+	//private UserRepository userDao = new UserRepository();
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder bcryptEncoder;
 
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDao.findByUsername(username);
+	/*public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = userRepository.findByUsername(username);
 		if(user == null){
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
@@ -45,11 +38,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 		});
 		return authorities;
 		//return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
-	}
+	}*/
 
-	@Override
+	//@Override
 	public User findOne(String username) {
-		return userDao.findByUsername(username);
+		return userRepository.findByUsername(username);
 	}
 
 	/*public List<User> findAll() {
@@ -80,13 +73,13 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return userDao.save(newUser);
     }*/
 
-	@Override
+	/*@Override
 	public void save(UserDto user) {
 		User newUser = new User();
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 		newUser.setName(user.getName());
 		newUser.setEmail(user.getEmail());
-		userDao.save(newUser);
-	}
+		userRepository.save(newUser);
+	}*/
 }

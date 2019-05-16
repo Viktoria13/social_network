@@ -1,10 +1,6 @@
 package com.viktoriia.social.network.auth.controller;
 
-import com.viktoriia.social.network.auth.config.TokenProvider;
 import com.viktoriia.social.network.auth.model.AuthToken;
-import com.viktoriia.social.network.auth.model.LoginUser;
-import com.viktoriia.social.network.auth.model.Role;
-import com.viktoriia.social.network.auth.model.User;
 import com.viktoriia.social.network.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +11,12 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/token")
 public class AuthenticationController {
 
-    @Autowired
+    /*@Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -45,7 +38,7 @@ public class AuthenticationController {
         final String token = jwtTokenUtil.generateToken(authentication);
         return ResponseEntity.ok(new AuthToken(token));
     }
-
+*/
 
 
 }

@@ -1,19 +1,14 @@
 package com.viktoriia.social.network.auth.controller;
-import com.viktoriia.social.network.auth.model.User;
-import com.viktoriia.social.network.auth.model.UserDto;
 import com.viktoriia.social.network.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    /*@Autowired
+    private UserService userService;*/
 
     //@Secured({"ROLE_ADMIN", "ROLE_USER"})
     /*@PreAuthorize("hasRole('ADMIN')")
@@ -36,9 +31,14 @@ public class UserController {
         return userService.save(user);
     }*/
 
-    @RequestMapping(value="/signup", method = RequestMethod.POST)
+    /*@RequestMapping(value="/signup", method = RequestMethod.POST)
     public void saveUser(@RequestBody UserDto user){
         userService.save(user);
-    }
+    }*/
+
+    /*@RequestMapping(value = "/getInfo", method = RequestMethod.GET)
+    public String getInfo() {
+        return "Secure info";
+    }*/
 
 }
