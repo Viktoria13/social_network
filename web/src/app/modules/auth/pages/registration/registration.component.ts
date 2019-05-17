@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {AuthService} from '../../../../core/services/auth/auth.service';
 import {SignUpInfo} from '../../../../core/authentication/signup-info';
 import {Route, Router} from '@angular/router';
+import {TokenStorage} from '../../../../core/authentication/token.storage';
 
 
 @Component({
@@ -20,7 +21,11 @@ export class RegistrationComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private tokenStorage: TokenStorage) {
     this.buildForm();
   }
 
@@ -37,6 +42,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.tokenStorage.getToken()) {
+      this.router.navigate(['/home/profile']);
+    }
   }
 
   onKeyConfirmPassword(event: any) {
@@ -55,6 +63,7 @@ export class RegistrationComponent implements OnInit {
         formControls.fullName.value,
         formControls.username.value,
         formControls.email.value,
+        formControls.phone.value,
         formControls.password.value);
 
       this.authService.signUp(this.signupInfo).subscribe(

@@ -98,7 +98,9 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
         // Add token to header
         response.addHeader("Access-Control-Expose-Headers", "Authorization");
+        response.addHeader("Access-Control-Expose-Headers", "Username");
         response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
+        response.addHeader("Username", auth.getName());
     }
 
     // A (temporary) class just to represent the user credentials

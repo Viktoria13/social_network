@@ -12,6 +12,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
 
 import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 
+// import { DataSharingService } from './shared/services/data-sharing.service';
+
 @NgModule({
   declarations: [
     AppComponent,

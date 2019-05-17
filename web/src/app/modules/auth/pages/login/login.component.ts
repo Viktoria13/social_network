@@ -15,9 +15,6 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  // users: UserTest[];
-  // user: UserTest = new UserTest();
-
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -42,7 +39,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    alert(this.tokenStorage.getToken());
+    if (this.tokenStorage.getToken()) {
+      this.router.navigate(['/home/profile']);
+    }
+    // alert(this.tokenStorage.getToken());
     /*if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
@@ -94,9 +94,8 @@ export class LoginComponent implements OnInit {
             `${key}: ${resp.headers.get(key)}`);
           console.log(this.headers);*/
           this.tokenStorage.saveToken(resp.headers.get('Authorization'));
-          console.log(resp.headers.get('Authorization'));
-          /*this.token.saveToken(data.token);
-          this.router.navigate(['/home/profile']);*/
+          this.tokenStorage.saveUsername(resp.headers.get('Username'));
+          this.router.navigate(['/home/profile']);
         }
 
 

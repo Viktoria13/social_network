@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {DataSharingService} from '../../shared/services/data-sharing.service';
 
 
 const TOKEN_KEY = 'AuthToken';
@@ -10,16 +11,19 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class TokenStorage {
   private roles: Array<string> = [];
-  constructor() { }
+  constructor(private dataSharingService: DataSharingService) { }
 
   signOut() {
     window.sessionStorage.removeItem(TOKEN_KEY);
+    window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.clear();
+    this.dataSharingService.logOut();
   }
 
   public saveToken(token: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY,  token);
+    this.dataSharingService.isUserLoggedIn.next(true);
   }
 
   public getToken(): string {
@@ -29,6 +33,14 @@ export class TokenStorage {
   public saveUsername(username: string) {
     window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.setItem(USERNAME_KEY, username);
+    this.dataSharingService.username.next(username);
+  }
+
+  public refreshDataSharing() {
+    if (this.getToken()) {
+      this.dataSharingService.isUserLoggedIn.next(true);
+      this.dataSharingService.username.next(this.getUsername());
+    }
   }
 
   public getUsername(): string {

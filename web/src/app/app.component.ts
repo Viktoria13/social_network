@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {TokenStorage} from './core/authentication/token.storage';
+import {DataSharingService} from './shared/services/data-sharing.service';
 
 
 @Component({
@@ -8,5 +10,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(private tokenStorage: TokenStorage) {
+    this.tokenStorage.refreshDataSharing();
+  }
 
 }
