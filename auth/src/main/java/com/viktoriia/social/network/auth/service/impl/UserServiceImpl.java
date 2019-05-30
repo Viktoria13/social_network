@@ -1,23 +1,24 @@
 package com.viktoriia.social.network.auth.service.impl;
 
 import com.viktoriia.social.network.auth.model.User;
-import com.viktoriia.social.network.auth.repository.UserRepository;
+import com.viktoriia.social.network.auth.repository.UserRepositoryT;
 import com.viktoriia.social.network.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 
 @Service(value = "userService")
-public class UserServiceImpl /*implements UserService*/ {
+public class UserServiceImpl implements UserService {
 	
 	/*@Autowired
 	private UserDao userDao;*/
 
-	//private UserRepository userDao = new UserRepository();
+	//private UserRepositoryT userDao = new UserRepositoryT();
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepositoryT userRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder bcryptEncoder;
@@ -41,8 +42,13 @@ public class UserServiceImpl /*implements UserService*/ {
 	}*/
 
 	//@Override
-	public User findOne(String username) {
+	/*public User findOne(String username) {
 		return userRepository.findByUsername(username);
+	}*/
+
+	@Override
+	public Mono<User> getUserByUsername(String username) {
+		return null;
 	}
 
 	/*public List<User> findAll() {

@@ -1,6 +1,6 @@
 package com.viktoriia.social.network.auth.config;
 
-import com.viktoriia.social.network.auth.repository.UserRepository;
+import com.viktoriia.social.network.auth.repository.UserRepositoryT;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class AppContext {
 
     @Bean
-    public UserRepository userRepository() {
-        return new UserRepository();
+    public UserRepositoryT userRepository() {
+        return new UserRepositoryT();
     }
 }
