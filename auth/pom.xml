@@ -17,6 +17,8 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+		<spring-data-r2dbc.version>1.0.0.M1</spring-data-r2dbc.version>
+		<r2dbc-postgresql.version>1.0.0.M6</r2dbc-postgresql.version>
 	</properties>
 
 	<dependencies>
@@ -53,6 +55,12 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>

@@ -24,38 +24,15 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     // We use auth manager to validate the user credentials
     private AuthenticationManager authManager;
 
-    //static final String ORIGIN = "Origin";
-
     private final JwtConfig jwtConfig;
 
     public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authManager, JwtConfig jwtConfig) {
         this.authManager = authManager;
         this.jwtConfig = jwtConfig;
-
         // By default, UsernamePasswordAuthenticationFilter listens to "/login" path.
         // In our case, we use "/auth". So, we need to override the defaults.
         this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(jwtConfig.getUri(), "POST"));
     }
-
-
-/*    @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response){
-        if (request.getHeader(ORIGIN)) {
-            String origin = request.getHeader(ORIGIN)
-            response.addHeader('Access-Control-Allow-Origin', origin)
-            response.addHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-            response.addHeader('Access-Control-Allow-Credentials', 'true')
-            response.addHeader('Access-Control-Allow-Headers',
-                    request.getHeader('Access-Control-Request-Headers'))
-        }
-        if (request.method == 'OPTIONS') {
-            response.writer.print('OK')
-            response.writer.flush()
-            return
-        }
-        return super.attemptAuthentication(request, response)
-    }*/
-
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
