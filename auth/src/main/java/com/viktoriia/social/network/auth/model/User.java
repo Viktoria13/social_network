@@ -2,38 +2,38 @@ package com.viktoriia.social.network.auth.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
 
 public class User {
-
-    private int id;
+    private String id;
     private String username;
     private String password;
-    private String name;
+    private String fullname;
     private String email;
     private String phone;
     private String role;
 
     public User(){}
 
-    public User(int id, String username, String password, String role) {
+    /*public User(BigInteger id, String username, String password, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
-    }
+    }*/
 
-    public User(String username, String password, String name, String email, String phone, String role) {
+    public User(String username, String password, String fullName, String email, String phone, String role) {
         this.username = username;
         this.password = password;
-        this.name = name;
+        this.fullname = fullName;
         this.email = email;
         this.phone = phone;
         this.role = role;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -45,8 +45,8 @@ public class User {
         return password;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullname;
     }
 
     public String getEmail() {
@@ -61,7 +61,7 @@ public class User {
         return role;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -73,8 +73,8 @@ public class User {
         this.password = password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullname = fullName;
     }
 
     public void setEmail(String email) {
