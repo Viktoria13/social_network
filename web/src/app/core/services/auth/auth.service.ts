@@ -28,9 +28,8 @@ export class AuthService {
   signUp(info: SignUpInfo): Observable<string> {
     return this.http.post<string>(this.signUpUrl, info, httpOptions);
   }
-
   getInfo(): Observable<any> {
-    return this.http.get('http://localhost:8765/gallery', {responseType: 'text'});
+    return this.http.get('http://localhost:8765/gallery/signup', {responseType: 'text'});
   }
 
 }

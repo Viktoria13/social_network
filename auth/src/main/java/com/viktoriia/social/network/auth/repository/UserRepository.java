@@ -11,11 +11,15 @@ import reactor.core.publisher.Mono;
 import java.math.BigInteger;
 
 @Repository
-public interface UserRepository extends ReactiveCrudRepository<User, BigInteger> {
+public interface UserRepository extends ReactiveCrudRepository<User, String> {
 
     //@Query("SELECT * FROM USERS WHERE username = $1")
     @Query("SELECT * FROM \"users\" WHERE \"username\" = $1")
     Mono<User>findByUsername(String username);
 
+    @Override
+    <S extends User> Mono<S> save(S s);
 
+    /*@Override
+    <S extends User> Mono<S> save(S s);*/
 }
